@@ -663,7 +663,7 @@ impl crate::Device<super::Api> for super::Device {
             | crate::TextureUses::DEPTH_STENCIL_READ;
         let format_desc = self.shared.describe_texture_format(desc.format);
 
-        let (inner, is_cubemap) = if render_usage.contains(desc.usage)
+        let (inner, is_cubemap) = if render_usage.intersects(desc.usage)
             && desc.dimension == wgt::TextureDimension::D2
             && desc.size.depth_or_array_layers == 1
         {
